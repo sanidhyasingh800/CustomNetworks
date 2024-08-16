@@ -3,6 +3,15 @@ import numpy as np
 
 
 # main Neural Network class
+"""
+Note: User passes the data as:
+    input : 1 example per row
+    output: 1 output per row (if a NN produces multiple outputs, all outputs corresponding to 1 example per row)
+
+For passes between layers, this is transposed
+    the output of each layer is 1 example per column 
+
+"""
 
 class Network:
 
@@ -27,26 +36,26 @@ class Network:
     # expect X_train to have 1 training example per row 
     # expect Y_train to have all outputs in a row vector 
     def train(self, X_train, Y_train, epochs, learning_rate, batch_size):
-        # training the model using the back prop algo
+        # training the model using back prop
 
         error_function = lambda output, expected: output - expected
 
-        ## we will use stochastic gradient descent in the first implementation
+
         for j in range(epochs):
             for batch in range(0, X_train.shape[0], batch_size):
                 current_batch_X= X_train[batch: batch + batch_size]
-                current_batch_Y = Y_train[batch: batch + batch_size].T
+                current_batch_Y = Y_train[batch: batch + batch_size].T # transpose so that the format of the output matches the format of data passed through the network
                 # print(current_batch_X)
                 # print(current_batch_Y)
                 ## perform forward pass and store all require data 
-                output = self.predict(current_batch_X).T
-                # print(output)
+                output = self.predict(current_batch_X).T # since self.predict returns outputs for a single example per row, but our network uses single example per column
+                # print("output: ", output)
                 
                 
                 ## perform loss calculations 
                 # we will currently use the mean squared error built in
                 if j % (epochs / 10) == 0:
-                    loss = np.sum((current_batch_Y - output)**2 / 2) / output.shape[0]
+                    loss = np.sum((current_batch_Y - output)**2 / 2) / output.shape[1]
                     print("Loss: ",  loss)
 
                 for i in reversed(range(len(self.layers))):

@@ -29,7 +29,7 @@ y = np.array([[1, 0, 0],
               [0,0,1]])
 print(NN.predict(x_input))
 
-NN.train(x_input, y, epochs = 10000, learning_rate = 0.01, batch_size=2)
+NN.train(x_input, y, epochs = 1, learning_rate = 0.01, batch_size=1)
 print(NN.predict(x_input))
 
 # for i in range(len(NN.layers)):
