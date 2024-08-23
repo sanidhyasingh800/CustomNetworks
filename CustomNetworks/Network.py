@@ -1,4 +1,5 @@
-from Layer import Layer
+from .Layer import Layer
+from .loss import *
 import numpy as np
 
 
@@ -12,6 +13,8 @@ For passes between layers, this is transposed
     the output of each layer is 1 example per column 
 
 """
+
+
 
 class Network:
 
@@ -35,10 +38,10 @@ class Network:
 
     # expect X_train to have 1 training example per row 
     # expect Y_train to have all outputs in a row vector 
-    def train(self, X_train, Y_train, epochs, learning_rate, batch_size):
+    def train(self, X_train, Y_train, epochs = 5, learning_rate = 0.1, batch_size = 32, loss = L2(), display_losses = False):
         # training the model using back prop
 
-        error_function = lambda output, expected: output - expected
+        # error_function = lambda output, expected: output - expected
 
 
         for j in range(epochs):
@@ -54,14 +57,15 @@ class Network:
                 
                 ## perform loss calculations 
                 # we will currently use the mean squared error built in
-                if j % (epochs / 10) == 0:
-                    loss = np.sum((current_batch_Y - output)**2 / 2) / output.shape[1]
-                    print("Loss: ",  loss)
+                if display_losses and j % (epochs / 10) == 0:
+                    current_loss = np.sum(loss.calculate_loss(current_batch_Y.T, output.T))
+                    # np.sum((current_batch_Y - output)**2 / 2) / output.shape[1]
+                    print("Loss: ",  current_loss)
 
                 for i in reversed(range(len(self.layers))):
-                    # Error Calculation for Output Layer Using L2 loss
+                    # Error Calculation for Output Layer Using user provided loss function
                     if i == len(self.layers)-1:
-                        current_layer_error = np.multiply(error_function(output, current_batch_Y), 
+                        current_layer_error = np.multiply(loss.loss_derivative(current_batch_Y.T, output.T).T, 
                                                 self.layers[i].activation.derivative(self.layers[i].logits))
                     # hidden layer error calculation
                     else: 
