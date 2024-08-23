@@ -104,7 +104,7 @@ output = NN.predict(X_test_flattened)
 
 ## Use
 ```bash
-   git clone https://github.com/username/CustomNetworks.git
+   git clone https://github.com/sanidhyasingh800/CustomNetworks.git
 
 ```
  into project and import using
