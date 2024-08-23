@@ -109,5 +109,5 @@ output = NN.predict(X_test_flattened)
 ```
  into project and import using
   ```python
-  from CustomNetorks import *
+  from CustomNetworks import *
   ```
