@@ -1,9 +1,10 @@
 # Custom Neural Network Library [Inspired by Tensorflow]
 
 ## Table of Contents
-1. [Introduction](#Introduction)
-2. [Documentation](#Documentation)
-4. [Example](#example)
+1. [Introduction](#introduction)
+2. [Documentation](#documentation)
+3. [Example](#example)
+4. [Use](#use)
 
 
 
@@ -100,3 +101,13 @@ NN.train(X_train_flattened, y_train,
 output = NN.predict(X_test_flattened)
 
 ```
+
+## Use
+```bash
+   git clone https://github.com/username/CustomNetworks.git
+
+```
+ into project and import using
+  ```python
+  from CustomNetorks import *
+  ```
