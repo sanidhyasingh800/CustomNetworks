@@ -1,4 +1,4 @@
-from CustomNetworks import *
+from src import *
 from tensorflow.keras.datasets import mnist
 import numpy as np
 
