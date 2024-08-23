@@ -85,7 +85,7 @@ Returns the current weight matrix and bias vector as a tuple. This method is use
 - `tanh()`
 
 ### Loss:
-- `L1()`
+- `L2()`
 - `BinaryCrossEntropy()`
 
 ## Example
