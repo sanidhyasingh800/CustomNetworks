@@ -1,3 +1,4 @@
-from .src import *
-
-__all__ = ['src']
+from .src.Layer import Layer
+from .src.Activations import *
+from .src.loss import *
+from .src.Network import Network
